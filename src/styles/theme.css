@@ -1,0 +1,63 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+:root {
+  /* Page & card backgrounds */
+  --cream: #F5F0E8;
+  --cream-dark: #EDE8E0;
+  --parchment: #F9F6F0;
+  --parchment-dark: #F0EAE0;
+  --white: #FFFFFF;
+
+  /* Sidebar */
+  --sidebar-bg: #1C2D3E;
+  --sidebar-text: rgba(255,255,255,0.9);
+  --sidebar-muted: rgba(255,255,255,0.5);
+  --sidebar-active-bg: rgba(184,154,74,0.15);
+  --sidebar-active-border: #B89A4A;
+  --sidebar-width: 240px;
+
+  /* Slate scale */
+  --slate: #1C2D3E;
+  --slate-mid: #3A4F62;
+  --slate-muted: #4A5E6A;
+  --slate-light: #8A9BAA;
+  --slate-pale: #EBF0F5;
+
+  /* Gold accent */
+  --gold: #B89A4A;
+  --gold-dark: #9A7E35;
+  --gold-light: #D4C07A;
+  --gold-pale: #F5EDD6;
+
+  /* Semantic */
+  --success: #2A7A4A;
+  --success-bg: #DCF0E4;
+  --warning: #B87840;
+  --warning-bg: #F5EDD6;
+  --danger: #C0504A;
+  --danger-bg: #FBEDEC;
+  --info: #2A5A8A;
+  --info-bg: #DDE4EC;
+
+  /* Bonanza */
+  --bonanza-navy: #1A3A6E;
+  --bonanza-green: #2A7A3B;
+
+  /* Borders */
+  --border: #DDD6C8;
+  --border-light: #EDE8DF;
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Radius */
+  --radius: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* Shadow */
+  --shadow: 0 1px 4px rgba(28,45,62,0.08);
+  --shadow-md: 0 4px 16px rgba(28,45,62,0.12);
+}
