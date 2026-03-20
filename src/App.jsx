@@ -12,6 +12,9 @@ import ReceiptsPage from './pages/ReceiptsPage.jsx'
 import TasksPage from './pages/TasksPage.jsx'
 import ReportsPage from './pages/ReportsPage.jsx'
 import HCMediaPage from './pages/HCMediaPage.jsx'
+import HubPage from './pages/HubPage.jsx'
+import CommunicationsPage from './pages/CommunicationsPage.jsx'
+import SettingsPage from './pages/SettingsPage.jsx'
 import { demoTasks, demoLeads } from './data/demo.js'
 import './index.css'
 
@@ -32,21 +35,25 @@ export default function App() {
   const [page, setPage] = useState('dashboard')
   const taskCount = demoTasks.filter(t => t.status === 'open' && t.priority === 'urgent').length
   const leadCount = demoLeads.filter(l => l.status === 'new').length
+
   const pages = {
-    dashboard:    <Dashboard onNavigate={setPage} />,
-    clients:      <ClientsPage />,
-    leads:        <LeadsPage />,
-    properties:   <PropertiesPage />,
-    transactions: <TransactionsPage />,
-    appointments: <AppointmentsPage />,
-    documents:    <DocumentsPage />,
-    contracts:    <ComingSoon title="Contratos" />,
-    receipts:     <ReceiptsPage />,
-    tasks:        <TasksPage />,
-    reports:      <ReportsPage />,
-    hcmedia:      <HCMediaPage />,
-    settings:     <ComingSoon title="Configuracion" />,
+    dashboard:       <Dashboard onNavigate={setPage} />,
+    clients:         <ClientsPage />,
+    leads:           <LeadsPage />,
+    properties:      <PropertiesPage />,
+    transactions:    <TransactionsPage />,
+    appointments:    <AppointmentsPage />,
+    documents:       <DocumentsPage />,
+    contracts:       <ComingSoon title="Contratos" />,
+    receipts:        <ReceiptsPage />,
+    tasks:           <TasksPage />,
+    communications:  <CommunicationsPage />,
+    reports:         <ReportsPage />,
+    hcmedia:         <HCMediaPage />,
+    hub:             <HubPage />,
+    settings:        <SettingsPage />,
   }
+
   return (
     <div className="app-shell">
       <Sidebar current={page} onNavigate={setPage} taskCount={taskCount} leadCount={leadCount} />
