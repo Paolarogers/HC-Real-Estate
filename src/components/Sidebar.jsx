@@ -93,14 +93,14 @@ export default function Sidebar({ current, onNavigate, taskCount = 0, leadCount 
           <img
             src="/HC_logo_3d.png"
             alt="HC"
-            style={{ width: 28, height: 28, objectFit: 'contain', opacity: 0.85 }}
+            style={{ width: 26, height: 26, objectFit: 'contain', opacity: 0.85, flexShrink: 0 }}
             onError={e => { e.target.style.display='none' }}
           />
-          <div>
-            <div style={{ fontSize: '0.7rem', color: 'var(--sidebar-muted)', lineHeight: 1.3 }}>
-              Powered by HC Business &amp; Media
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontSize: '0.67rem', color: 'var(--sidebar-muted)', whiteSpace: 'nowrap', lineHeight: 1.4 }}>
+              HC Business &amp; Media · Orbita
             </div>
-            <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.3)' }}>Greenville, SC USA</div>
+            <div style={{ fontSize: '0.63rem', color: 'rgba(255,255,255,0.3)', whiteSpace: 'nowrap' }}>Greenville, SC USA</div>
           </div>
         </div>
 
