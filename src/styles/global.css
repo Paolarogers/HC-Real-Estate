@@ -186,3 +186,38 @@ input:focus,select:focus,textarea:focus { border-color: var(--gold); }
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Dashboard KPI strip fix ─────────────────────────────── */
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.kpi-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.kpi-card.accent   { border-left: 3px solid var(--gold); }
+.kpi-card.danger   { border-left: 3px solid var(--danger); }
+.kpi-card.success  { border-left: 3px solid var(--success); }
+.kpi-label  { font-size: 0.67rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate-muted); font-family: var(--font-body); }
+.kpi-value  { font-family: var(--font-body); font-size: 2rem; font-weight: 700; color: var(--slate); line-height: 1; letter-spacing: -0.02em; }
+.kpi-sub    { font-size: 0.72rem; color: var(--slate-muted); font-family: var(--font-body); }
+
+/* ── Dashboard panels grid ───────────────────────────────── */
+.dash-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .kpi-strip { grid-template-columns: 1fr 1fr; }
+  .dash-grid-2 { grid-template-columns: 1fr; }
+  .sidebar { transform: translateX(-100%); }
+  .main-content { margin-left: 0; }
+}
