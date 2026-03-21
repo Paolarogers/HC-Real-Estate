@@ -1,53 +1,60 @@
-
-import React from 'react'
+import React, { useState } from 'react'
 
 const NAV = [
   { section: null, items: [
-    { id: 'dashboard', label: 'Panel Principal' },
-    { id: 'hub', label: 'Mi Hub HC Media' },
+    { id: 'dashboard',  labelEs: 'Panel Principal',      labelEn: 'Dashboard' },
+    { id: 'hub',        labelEs: 'Mi Hub HC Media',       labelEn: 'My HC Hub' },
   ]},
-  { section: 'CLIENTES Y LEADS', items: [
-    { id: 'clients', label: 'Clientes' },
-    { id: 'leads', label: 'Leads', badge: 'lead' },
-    { id: 'households', label: 'Familias' },
+  { sectionEs: 'CLIENTES Y LEADS', sectionEn: 'CLIENTS & LEADS', items: [
+    { id: 'clients',    labelEs: 'Clientes',              labelEn: 'Clients' },
+    { id: 'leads',      labelEs: 'Leads',                 labelEn: 'Leads',   badge: 'lead' },
+    { id: 'households', labelEs: 'Familias',              labelEn: 'Households' },
   ]},
-  { section: 'PROPIEDADES', items: [
-    { id: 'properties', label: 'Propiedades' },
-    { id: 'transactions', label: 'Transacciones' },
+  { sectionEs: 'PROPIEDADES', sectionEn: 'PROPERTIES', items: [
+    { id: 'properties',   labelEs: 'Propiedades',         labelEn: 'Properties' },
+    { id: 'transactions', labelEs: 'Transacciones',       labelEn: 'Transactions' },
   ]},
-  { section: 'OPERACIONES', items: [
-    { id: 'appointments', label: 'Citas' },
-    { id: 'contracts', label: 'Contratos' },
-    { id: 'documents', label: 'Documentos' },
-    { id: 'receipts', label: 'Recibos' },
-    { id: 'tasks', label: 'Tareas', badge: 'task' },
+  { sectionEs: 'OPERACIONES', sectionEn: 'OPERATIONS', items: [
+    { id: 'appointments', labelEs: 'Citas',               labelEn: 'Appointments' },
+    { id: 'contracts',    labelEs: 'Contratos',           labelEn: 'Contracts' },
+    { id: 'documents',    labelEs: 'Documentos',          labelEn: 'Documents' },
+    { id: 'receipts',     labelEs: 'Recibos',             labelEn: 'Receipts' },
+    { id: 'tasks',        labelEs: 'Tareas',              labelEn: 'Tasks', badge: 'task' },
   ]},
-  { section: 'COMUNICACIONES', items: [
-    { id: 'communications', label: 'Comunicaciones' },
+  { sectionEs: 'COMUNICACIONES', sectionEn: 'COMMUNICATIONS', items: [
+    { id: 'communications', labelEs: 'Comunicaciones',   labelEn: 'Communications' },
   ]},
-  { section: 'CRECIMIENTO', items: [
-    { id: 'reactivation', label: 'Reactivacion' },
-    { id: 'referrals', label: 'Referidos' },
+  { sectionEs: 'CRECIMIENTO', sectionEn: 'GROWTH', items: [
+    { id: 'reactivation', labelEs: 'Reactivacion',        labelEn: 'Reactivation' },
+    { id: 'referrals',    labelEs: 'Referidos',           labelEn: 'Referrals' },
   ]},
-  { section: 'NEGOCIO', items: [
-    { id: 'reports', label: 'Financials' },
-    { id: 'staff', label: 'Staff y Comisiones' },
+  { sectionEs: 'NEGOCIO', sectionEn: 'BUSINESS', items: [
+    { id: 'reports', labelEs: 'Financials',               labelEn: 'Financials' },
+    { id: 'staff',   labelEs: 'Staff y Comisiones',       labelEn: 'Staff & Commissions' },
   ]},
-  { section: 'HC MEDIA', items: [
-    { id: 'hcmedia', label: 'Workspace HC Media' },
-    { id: 'ai', label: 'Asistente IA' },
+  { sectionEs: 'HC MEDIA', sectionEn: 'HC MEDIA', items: [
+    { id: 'hcmedia', labelEs: 'Workspace HC Media',       labelEn: 'HC Media Workspace' },
+    { id: 'ai',      labelEs: 'Asistente IA',             labelEn: 'AI Assistant' },
   ]},
-  { section: 'CONFIGURACION', items: [
-    { id: 'settings', label: 'Configuracion' },
+  { sectionEs: 'CONFIGURACION', sectionEn: 'SETTINGS', items: [
+    { id: 'settings', labelEs: 'Configuracion',           labelEn: 'Settings' },
   ]},
 ]
 
-export default function Sidebar({ current, onNavigate, taskCount = 0, leadCount = 0 }) {
+export default function Sidebar({ current, onNavigate, taskCount = 0, leadCount = 0, lang = 'es', onLangToggle }) {
+  const es = lang === 'es'
+
   return (
     <aside className="sidebar">
+      {/* Brand */}
       <div className="sidebar-brand">
         <div className="sidebar-logo-row">
-          <div className="sidebar-logo">HC</div>
+          <img
+            src="/HC_logo_3d.png"
+            alt="HC"
+            style={{ width: 38, height: 38, objectFit: 'contain', flexShrink: 0, mixBlendMode: 'normal' }}
+            onError={e => { e.target.style.display='none' }}
+          />
           <div>
             <div className="sidebar-brand-name">HC Real Estate</div>
           </div>
@@ -55,11 +62,14 @@ export default function Sidebar({ current, onNavigate, taskCount = 0, leadCount 
         <div className="sidebar-brand-sub">Hispanos Comunidad</div>
       </div>
 
+      {/* Nav */}
       <nav className="sidebar-nav">
         {NAV.map((section, si) => (
           <div key={si}>
-            {section.section && (
-              <div className="sidebar-section-label">{section.section}</div>
+            {(section.sectionEs || section.sectionEn) && (
+              <div className="sidebar-section-label">
+                {es ? section.sectionEs : section.sectionEn}
+              </div>
             )}
             {section.items.map(item => (
               <div
@@ -67,26 +77,52 @@ export default function Sidebar({ current, onNavigate, taskCount = 0, leadCount 
                 className={`nav-item${current === item.id ? ' active' : ''}`}
                 onClick={() => onNavigate(item.id)}>
                 <span className="nav-dot" />
-                <span style={{ flex: 1 }}>{item.label}</span>
-                {item.badge === 'task' && taskCount > 0 && (
-                  <span className="nav-badge">{taskCount}</span>
-                )}
-                {item.badge === 'lead' && leadCount > 0 && (
-                  <span className="nav-badge nav-badge-gold">{leadCount}</span>
-                )}
+                <span style={{ flex: 1 }}>{es ? item.labelEs : item.labelEn}</span>
+                {item.badge === 'task' && taskCount > 0 && <span className="nav-badge">{taskCount}</span>}
+                {item.badge === 'lead' && leadCount > 0 && <span className="nav-badge nav-badge-gold">{leadCount}</span>}
               </div>
             ))}
           </div>
         ))}
       </nav>
 
+      {/* Footer */}
       <div className="sidebar-footer">
-        <div className="sidebar-powered">Powered by <span>Hispanos Comunidad</span></div>
+        {/* HC logo */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.65rem' }}>
+          <img
+            src="/HC_logo_3d.png"
+            alt="HC"
+            style={{ width: 28, height: 28, objectFit: 'contain', opacity: 0.85 }}
+            onError={e => { e.target.style.display='none' }}
+          />
+          <div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--sidebar-muted)', lineHeight: 1.3 }}>
+              Powered by HC Business &amp; Media
+            </div>
+            <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.3)' }}>Greenville, SC USA</div>
+          </div>
+        </div>
+
+        {/* Language toggle */}
+        <div style={{ display: 'flex', gap: '0.4rem', marginBottom: '0.75rem' }}>
+          <button
+            onClick={() => onLangToggle && onLangToggle('es')}
+            style={{ background: es ? 'rgba(184,154,74,0.2)' : 'transparent', border: '1px solid rgba(184,154,74,0.2)', borderRadius: 4, padding: '0.15rem 0.5rem', fontSize: '0.67rem', color: es ? 'var(--gold-light)' : 'var(--sidebar-muted)', cursor: 'pointer', fontFamily: 'var(--font-body)' }}>
+            ES
+          </button>
+          <button
+            onClick={() => onLangToggle && onLangToggle('en')}
+            style={{ background: !es ? 'rgba(184,154,74,0.2)' : 'transparent', border: '1px solid rgba(184,154,74,0.2)', borderRadius: 4, padding: '0.15rem 0.5rem', fontSize: '0.67rem', color: !es ? 'var(--gold-light)' : 'var(--sidebar-muted)', cursor: 'pointer', fontFamily: 'var(--font-body)' }}>
+            EN
+          </button>
+        </div>
+
         <div className="sidebar-user">
           <div className="sidebar-avatar">PR</div>
           <div>
             <div className="sidebar-user-name">Paola Rogers</div>
-            <div className="sidebar-user-role">Fundadora y Presidenta</div>
+            <div className="sidebar-user-role">{es ? 'Fundadora y Presidenta' : 'Founder & President'}</div>
           </div>
         </div>
       </div>

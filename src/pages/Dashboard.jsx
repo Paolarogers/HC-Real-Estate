@@ -4,7 +4,7 @@ import { demoClients, demoLeads, demoProperties, demoTransactions, demoAppointme
 
 const STAGES = ['intake','documents_gathering','offer_submitted','under_contract','inspection_appraisal','closing_scheduled']
 const STAGE_LABELS = {
-  intake:'Intake', documents_gathering:'Documentos', offer_submitted:'Oferta presentada',
+  intake:lang==='es'?'Intake':'Intake', documents_gathering:'Documentos', offer_submitted:'Oferta presentada',
   under_contract:'Bajo contrato', inspection_appraisal:'Inspeccion', closing_scheduled:'Cierre programado'
 }
 const STAGE_COLOR = {
@@ -12,7 +12,7 @@ const STAGE_COLOR = {
   under_contract:'var(--warning)', inspection_appraisal:'var(--info)', closing_scheduled:'var(--success)'
 }
 
-export default function Dashboard({ onNavigate }) {
+export default function Dashboard({ onNavigate, lang = 'es' }) {
   const today       = new Date().toDateString()
   const aptsToday   = demoAppointments.filter(a => new Date(a.scheduled_at).toDateString() === today)
   const openTxns    = demoTransactions.filter(t => !['closed','cancelled'].includes(t.stage))
